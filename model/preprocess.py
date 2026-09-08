@@ -4,6 +4,7 @@ Converts raw NSL-KDD data into numeric input for the Random Forest:
 binary labels, one-hot encoded categorical columns, difficulty_level dropped.
 """
 
+import joblib
 import pandas as pd
 from sklearn.preprocessing import OneHotEncoder
 
@@ -39,6 +40,8 @@ test_df["label"] = (test_df["label"] != "normal").astype(int)
 categorical_cols = ["protocol_type", "service", "flag"]
 encoder = OneHotEncoder(handle_unknown="ignore", sparse_output=False)
 encoder.fit(train_df[categorical_cols])
+encoder.fit(train_df[categorical_cols])
+joblib.dump(encoder, "model/encoder.pkl")
 
 def encode(df):
     encoded_array = encoder.transform(df[categorical_cols])
