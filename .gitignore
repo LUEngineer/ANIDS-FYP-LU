@@ -28,3 +28,9 @@ db.sqlite3
 
 # Scratch / temp files
 tempCodeRunnerFile.py
+
+# Additionals
+*.db
+data/*.db
+testing_tools/
+*.pem
