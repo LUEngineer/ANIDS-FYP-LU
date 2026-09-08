@@ -32,7 +32,16 @@ def is_safe_target(host: str) -> bool:
     targets."""
     try:
         ip = ipaddress.ip_address(host)
-        return ip.is_private or ip.is_loopback
+        if ip.is_private or ip.is_loopback:
+            return True
+
+        # DEMO EXCEPTION - COMMENTED OUT
+        # Resolved IP hardcoded here (not the domain) to avoid relying on
+        # DNS resolution during the live demo.
+        # if str(ip) == "<77.42.251.227>":
+        #     return True
+
+        return False
     except ValueError:
         allowed_hostnames = {"localhost"}
         return host.lower() in allowed_hostnames
